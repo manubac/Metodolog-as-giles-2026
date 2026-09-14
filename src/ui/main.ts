@@ -7,12 +7,16 @@ export function mountApp(root: HTMLElement, juego: Ahorcado): void {
   const lives = document.createElement("p");
   lives.dataset.testid = "lives";
 
+  const mensaje = document.createElement("p");
+  mensaje.dataset.testid = "mensaje";
+
   const input = document.createElement("input");
   input.type = "text";
 
   function render(): void {
     word.textContent = juego.palabraEnmascarada();
     lives.textContent = String(juego.vidasRestantes());
+    mensaje.textContent = juego.gano() ? "GANASTE" : "";
   }
 
   input.addEventListener("keydown", (event) => {
@@ -23,5 +27,5 @@ export function mountApp(root: HTMLElement, juego: Ahorcado): void {
   });
 
   render();
-  root.append(word, lives, input);
+  root.append(word, lives, mensaje, input);
 }
