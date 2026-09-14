@@ -15,6 +15,10 @@ export class Ahorcado {
     }
   }
 
+  gano(): boolean {
+    return this.palabra.split("").every((letra) => this.letrasAdivinadas.has(letra));
+  }
+
   palabraEnmascarada(): string {
     return this.palabra
       .split("")
