@@ -49,4 +49,13 @@ describe("Ahorcado", () => {
 
     expect(juego.perdio()).toBe(true);
   });
+    it("al perder, revela la palabra completa", () => {
+    const juego = new Ahorcado("GATO");
+
+    for (const letra of ["E", "I", "U", "R", "S", "N"]) {
+      juego.adivinar(letra);
+    }
+
+    expect(juego.palabraEnmascarada()).toBe("G A T O");
+  });
 });
