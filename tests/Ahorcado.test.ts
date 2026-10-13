@@ -40,4 +40,13 @@ describe("Ahorcado", () => {
 
     expect(juego.gano()).toBe(true);
   });
+    it("pierde la partida cuando se agotan las vidas", () => {
+    const juego = new Ahorcado("GATO");
+
+    for (const letra of ["E", "I", "U", "R", "S", "N"]) {
+      juego.adivinar(letra);
+    }
+
+    expect(juego.perdio()).toBe(true);
+  });
 });
