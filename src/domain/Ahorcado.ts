@@ -14,7 +14,9 @@ export class Ahorcado {
       this.vidas -= 1;
     }
   }
-
+  perdio(): boolean {
+    return this.vidas === 0;
+  }
   gano(): boolean {
     return this.palabra.split("").every((letra) => this.letrasAdivinadas.has(letra));
   }
