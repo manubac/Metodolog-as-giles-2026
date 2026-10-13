@@ -24,7 +24,7 @@ export class Ahorcado {
   palabraEnmascarada(): string {
     return this.palabra
       .split("")
-      .map((letra) => (this.letrasAdivinadas.has(letra) ? letra : "_"))
+      .map((letra) => (this.perdio() || this.letrasAdivinadas.has(letra) ? letra : "_"))
       .join(" ");
   }
 
