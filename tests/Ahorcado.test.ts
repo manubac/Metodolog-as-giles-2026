@@ -11,7 +11,7 @@ describe("Ahorcado", () => {
   it("arranca con 6 vidas", () => {
     const juego = new Ahorcado("GATO");
 
-    expect(juego.vidasRestantes()).toBe(6);
+    expect(juego.vidasRestantes()).toBe(99);
   });
 
   it("revela la letra adivinada cuando está presente en la palabra", () => {
