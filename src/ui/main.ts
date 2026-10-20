@@ -12,7 +12,7 @@ export function mountApp(root: HTMLElement, juego: Ahorcado): void {
 
   const input = document.createElement("input");
   input.type = "text";
-
+  let aviso = "";
   function render(): void {
     word.textContent = juego.palabraEnmascarada();
     lives.textContent = String(juego.vidasRestantes());
@@ -21,13 +21,15 @@ export function mountApp(root: HTMLElement, juego: Ahorcado): void {
     } else if (juego.perdio()) {
       mensaje.textContent = "PERDISTE";
     } else {
-      mensaje.textContent = "";
+      mensaje.textContent = aviso;
     }
   }
 
   input.addEventListener("keydown", (event) => {
     if (event.key !== "Enter") return;
-    juego.adivinar(input.value);
+    const letra = input.value;
+    aviso = juego.yaIntentada(letra) ? `Ya intentaste la letra ${letra}` : "";
+    juego.adivinar(letra);
     input.value = "";
     render();
   });
