@@ -66,4 +66,11 @@ describe("Ahorcado", () => {
 
     expect(juego.vidasRestantes()).toBe(5);
   });
+    it("indica si una letra ya fue intentada", () => {
+    const juego = new Ahorcado("GATO");
+
+    expect(juego.yaIntentada("E")).toBe(false);
+    juego.adivinar("E");
+    expect(juego.yaIntentada("E")).toBe(true);
+  });
 });
