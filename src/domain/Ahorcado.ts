@@ -8,14 +8,18 @@ export class Ahorcado {
     this.palabra = palabra;
   }
 
-    adivinar(letra: string): void {
-    if (this.letrasIntentadas.has(letra)) return;
+      adivinar(letra: string): void {
+    if (this.yaIntentada(letra)) return;
     this.letrasIntentadas.add(letra);
     if (this.palabra.includes(letra)) {
       this.letrasAdivinadas.add(letra);
     } else {
       this.vidas -= 1;
     }
+  }
+
+  yaIntentada(letra: string): boolean {
+    return this.letrasIntentadas.has(letra);
   }
   perdio(): boolean {
     return this.vidas === 0;
