@@ -58,4 +58,12 @@ describe("Ahorcado", () => {
 
     expect(juego.palabraEnmascarada()).toBe("G A T O");
   });
+    it("no descuenta otra vida al repetir una letra fallada", () => {
+      const juego = new Ahorcado("GATO");
+
+      juego.adivinar("E");
+      juego.adivinar("E");
+
+    expect(juego.vidasRestantes()).toBe(5);
+  });
 });
