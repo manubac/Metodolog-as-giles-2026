@@ -73,10 +73,15 @@ describe("Ahorcado", () => {
     juego.adivinar("E");
     expect(juego.yaIntentada("E")).toBe(true);
   });
-  it("rechaza un carácter que no es letra sin descontar vidas", () => {
-  const juego = new Ahorcado("GATO");
+    it("rechaza un carácter que no es letra sin descontar vidas", () => {
+    const juego = new Ahorcado("GATO");
 
-  expect(() => juego.adivinar("1")).toThrow("Ingresá una sola letra");
-  expect(juego.vidasRestantes()).toBe(6);
+    expect(() => juego.adivinar("1")).toThrow("Ingresá una sola letra");
+    expect(juego.vidasRestantes()).toBe(6);
+});
+    it("rechaza una entrada de más de una letra", () => {
+    const juego = new Ahorcado("GATO");
+
+    expect(() => juego.adivinar("AB")).toThrow("Ingresá una sola letra");
 });
 });
