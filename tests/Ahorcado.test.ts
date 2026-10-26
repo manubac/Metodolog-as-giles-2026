@@ -84,4 +84,15 @@ describe("Ahorcado", () => {
   expect(juego.vidasRestantes()).toBe(0);
   expect(juego.perdio()).toBe(true);
 });
+it("no descuenta vidas si se intenta adivinar una letra ausente tras haber ganado", () => {
+  const juego = new Ahorcado("GATO");
+
+  for (const letra of ["G", "A", "T", "O"]) {
+    juego.adivinar(letra);
+  }
+  juego.adivinar("Z");
+
+  expect(juego.vidasRestantes()).toBe(6);
+  expect(juego.gano()).toBe(true);
+});
 });
