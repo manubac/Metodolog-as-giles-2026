@@ -8,14 +8,17 @@ export class Ahorcado {
     this.palabra = palabra;
   }
 
-      adivinar(letra: string): void {
-        if (this.perdio() || this.yaIntentada(letra)|| this.gano()) return;
-        this.letrasIntentadas.add(letra);
-        if (this.palabra.includes(letra)) {
-        this.letrasAdivinadas.add(letra);
-      } else {
-        this.vidas -= 1;
-      }
+  adivinar(letra: string): void {
+    if (this.perdio() || this.gano()) return;
+    if (/\d/.test(letra)) throw new Error("Ingresá una sola letra");
+    if (!/^[A-Za-z]$/.test(letra)) throw new Error("Ingresá una sola letra");
+    if (this.yaIntentada(letra)) return;
+    this.letrasIntentadas.add(letra);
+    if (this.palabra.includes(letra)) {
+      this.letrasAdivinadas.add(letra);
+    } else {
+      this.vidas -= 1;
+    }
   }
 
   yaIntentada(letra: string): boolean {

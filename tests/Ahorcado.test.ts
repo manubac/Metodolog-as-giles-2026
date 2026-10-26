@@ -74,25 +74,39 @@ describe("Ahorcado", () => {
     expect(juego.yaIntentada("E")).toBe(true);
   });
   it("no descuenta vidas por debajo de 0 si se sigue adivinando tras perder", () => {
-  const juego = new Ahorcado("GATO");
+    const juego = new Ahorcado("GATO");
 
-  for (const letra of ["E", "I", "U", "R", "S", "N"]) {
-    juego.adivinar(letra);
-  }
-  juego.adivinar("Z");
+    for (const letra of ["E", "I", "U", "R", "S", "N"]) {
+      juego.adivinar(letra);
+    }
+    juego.adivinar("Z");
 
-  expect(juego.vidasRestantes()).toBe(0);
-  expect(juego.perdio()).toBe(true);
-});
-it("no descuenta vidas si se intenta adivinar una letra ausente tras haber ganado", () => {
-  const juego = new Ahorcado("GATO");
+    expect(juego.vidasRestantes()).toBe(0);
+    expect(juego.perdio()).toBe(true);
+  });
 
-  for (const letra of ["G", "A", "T", "O"]) {
-    juego.adivinar(letra);
-  }
-  juego.adivinar("Z");
+  it("no descuenta vidas si se intenta adivinar una letra ausente tras haber ganado", () => {
+    const juego = new Ahorcado("GATO");
 
-  expect(juego.vidasRestantes()).toBe(6);
-  expect(juego.gano()).toBe(true);
-});
+    for (const letra of ["G", "A", "T", "O"]) {
+      juego.adivinar(letra);
+    }
+    juego.adivinar("Z");
+
+    expect(juego.vidasRestantes()).toBe(6);
+    expect(juego.gano()).toBe(true);
+  });
+
+  it("rechaza un carácter que no es letra sin descontar vidas", () => {
+    const juego = new Ahorcado("GATO");
+
+    expect(() => juego.adivinar("1")).toThrow("Ingresá una sola letra");
+    expect(juego.vidasRestantes()).toBe(6);
+  });
+
+  it("rechaza una entrada de más de una letra", () => {
+    const juego = new Ahorcado("GATO");
+
+    expect(() => juego.adivinar("AB")).toThrow("Ingresá una sola letra");
+  });
 });

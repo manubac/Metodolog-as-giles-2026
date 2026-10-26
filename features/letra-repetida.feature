@@ -19,3 +19,19 @@ Característica: Validación de entrada
       | GATO    | E     | _ _ _ _     | 5     |
       | GATO    | A     | _ A _ _     | 6     |
       | PERRO   | R     | _ _ R R _   | 6     |
+
+ @CA-7
+  Esquema del escenario: Una entrada que no es una letra se rechaza sin penalizar
+    Dado una partida con la palabra "GATO"
+    Cuando el jugador adivina la letra "<entrada>"
+    Entonces se ve el mensaje "Ingresá una sola letra"
+    Y se ven 6 vidas
+    Y se ve la palabra "_ _ _ _"
+
+    Ejemplos:
+      | entrada |
+      | 1       |
+      | ?       |
+      | AB      |
+      |         |
+  

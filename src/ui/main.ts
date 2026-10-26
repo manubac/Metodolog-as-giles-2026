@@ -25,11 +25,15 @@ export function mountApp(root: HTMLElement, juego: Ahorcado): void {
     }
   }
 
-  input.addEventListener("keydown", (event) => {
+   input.addEventListener("keydown", (event) => {
     if (event.key !== "Enter") return;
     const letra = input.value;
     aviso = juego.yaIntentada(letra) ? `Ya intentaste la letra ${letra}` : "";
-    juego.adivinar(letra);
+    try {
+      juego.adivinar(letra);
+    } catch (error) {
+      aviso = (error as Error).message;
+    }
     input.value = "";
     render();
   });

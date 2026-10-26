@@ -21,7 +21,7 @@ heredan todos sus escenarios) y un tag `@CA-n` por escenario, más esta matriz.
 | HU-03    | CA-4 Completar todas las letras → "GANASTE"             | ✅ Done      | `@CA-4` | "gana la partida cuando se revelan todas las letras"                                                                                                                          |
 | HU-03    | CA-5 Agotar las 6 vidas → "PERDISTE" + palabra revelada | ✅ Done      | `@CA-5` | "pierde la partida cuando se agotan las vidas", "al perder, revela la palabra completa"                                                                                       |
 | HU-04    | CA-6 Letra repetida → no penaliza e informa `"Ya intentaste la letra <letra>"` | ✅ Done      | `@CA-6` | "no descuenta otra vida al repetir una letra fallada", "indica si una letra ya fue intentada"                                                                                 |
-| HU-04    | CA-7 Entrada inválida (no letra) → no penaliza e informa                       | ⬜ Pendiente | —       | —                                                                                                                                                                             |
+| HU-04    | CA-7 Entrada inválida (no letra) → no penaliza e informa `"Ingresá una sola letra"` | ✅ Done | `@CA-7` | "rechaza un carácter que no es letra sin descontar vidas", "rechaza una entrada de más de una letra"                                                                          |
 | HU-03    | CA-8 Seguir intentando sin vidas → no hay vidas negativas (quedan en 0)        | ✅ Done      | `@CA-8` | "no descuenta vidas por debajo de 0 si se sigue adivinando tras perder", "no descuenta vidas si se intenta adivinar una letra ausente tras haber ganado"                      |
 
 ### HU-01 — Inicio de partida · ✅ Done
@@ -42,11 +42,11 @@ AT: [`features/adivinar-letras.feature`](features/adivinar-letras.feature) — C
 si gané o perdí la partida.
 AT: [`features/desenlace-partida.feature`](features/desenlace-partida.feature) — CA-4, CA-5, CA-8.
 
-### HU-04 — Validación de entrada · 🔄 En progreso
+### HU-04 — Validación de entrada · ✅ Done
 
 **Como** jugador **quiero** que el sistema valide mis ingresos de teclado **para** no perder vidas por
 errores o por letras que ya intenté.
-AT: [`features/letra-repetida.feature`](features/letra-repetida.feature) — CA-6 (✅), CA-7 (⬜ pendiente: entrada que no es una letra válida).
+AT: [`features/letra-repetida.feature`](features/letra-repetida.feature) — CA-6, CA-7.
 
 ## Proceso y rotación de autoría
 
@@ -57,10 +57,10 @@ AT: [`features/letra-repetida.feature`](features/letra-repetida.feature) — CA-
   - Nicolás Piccoli — `nicopiccoli07@gmail.com`
   - Diaz Iñaki — `inakidiaz2808@gmail.com`
   - Joaquin Zubiri-PC — `joaquinzubiri00@gmail.com`
-- Rotación: el piso es ≥3 commits `RED:` propios por persona (actualmente Joaquín debe tomar los próximos ciclos `RED:` → `GREEN:` para cumplir el piso).
-- Convención de commits (según Guía ATDD §3 y feedback de la cátedra):
+- Rotación: los integrantes van rotando turnos en los ciclos de AT y UT (respetando el piso de ≥3 commits `RED:` propios por persona a lo largo del proyecto).
+- Convención de commits (según Guía ATDD §3):
   - `RED:` (test en rojo) / `GREEN:` (código mínimo que lo pasa) / `REFACTOR:` (opcional).
-  - **Hacer todos los commits localmente (`RED:` y `GREEN:`), pero hacer `git push` recién cuando el AT cierre en `GREEN:`** (nunca pushear con un `RED:` o con el AT todavía roto como tope de `main`, para no romper el pipeline de CI; si hace falta subir a mitad de un AT por cambio de máquina/turno, usar una rama y mergear a `main` en verde).
+  - **Hacer todos los commits localmente (`RED:` y `GREEN:`), pero hacer `git push` recién cuando el AT cierre en `GREEN:`** (nunca pushear con un `RED:` o con el AT todavía roto como tope de `main`, para no romper el pipeline de CI).
 
 ## Cómo retomar en otra sesión o máquina
 
@@ -73,5 +73,3 @@ git config user.email "email@..."
 npm test      # unit tests del dominio
 npm run at    # acceptance tests (levanta la app y corre Playwright)
 ```
-
-**Próximo paso:** completar CA-7 (entrada inválida) y encarar las 4 features de Aprobación Directa (Guía ATDD §9), commiteando cada paso localmente y haciendo `git push` recién con el AT en verde.
