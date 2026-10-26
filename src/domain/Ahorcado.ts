@@ -9,7 +9,7 @@ export class Ahorcado {
   }
 
       adivinar(letra: string): void {
-        if (this.perdio() || this.yaIntentada(letra)) return;
+        if (this.perdio() || this.yaIntentada(letra)|| this.gano()) return;
         this.letrasIntentadas.add(letra);
         if (this.palabra.includes(letra)) {
         this.letrasAdivinadas.add(letra);
