@@ -9,13 +9,13 @@ export class Ahorcado {
   }
 
       adivinar(letra: string): void {
-    if (this.yaIntentada(letra)) return;
-    this.letrasIntentadas.add(letra);
-    if (this.palabra.includes(letra)) {
-      this.letrasAdivinadas.add(letra);
-    } else {
-      this.vidas -= 1;
-    }
+        if (this.perdio() || this.yaIntentada(letra)) return;
+        this.letrasIntentadas.add(letra);
+        if (this.palabra.includes(letra)) {
+        this.letrasAdivinadas.add(letra);
+      } else {
+        this.vidas -= 1;
+      }
   }
 
   yaIntentada(letra: string): boolean {
