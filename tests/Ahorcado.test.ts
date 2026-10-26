@@ -73,4 +73,15 @@ describe("Ahorcado", () => {
     juego.adivinar("E");
     expect(juego.yaIntentada("E")).toBe(true);
   });
+  it("no descuenta vidas por debajo de 0 si se sigue adivinando tras perder", () => {
+  const juego = new Ahorcado("GATO");
+
+  for (const letra of ["E", "I", "U", "R", "S", "N"]) {
+    juego.adivinar(letra);
+  }
+  juego.adivinar("Z");
+
+  expect(juego.vidasRestantes()).toBe(0);
+  expect(juego.perdio()).toBe(true);
+});
 });
