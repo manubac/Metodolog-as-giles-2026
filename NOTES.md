@@ -22,7 +22,7 @@ heredan todos sus escenarios) y un tag `@CA-n` por escenario, más esta matriz.
 | HU-03    | CA-5 Agotar las 6 vidas → "PERDISTE" + palabra revelada | ✅ Done      | `@CA-5` | "pierde la partida cuando se agotan las vidas", "al perder, revela la palabra completa"                                                                                       |
 | HU-04    | CA-6 Letra repetida → no penaliza e informa `"Ya intentaste la letra <letra>"` | ✅ Done      | `@CA-6` | "no descuenta otra vida al repetir una letra fallada", "indica si una letra ya fue intentada"                                                                                 |
 | HU-04    | CA-7 Entrada inválida (no letra) → no penaliza e informa `"Ingresá una sola letra"` | ✅ Done | `@CA-7` | "rechaza un carácter que no es letra sin descontar vidas", "rechaza una entrada de más de una letra"                                                                          |
-| HU-03    | CA-8 Seguir intentando sin vidas → no hay vidas negativas (quedan en 0)        | ✅ Done      | `@CA-8` | "no descuenta vidas por debajo de 0 si se sigue adivinando tras perder", "no descuenta vidas si se intenta adivinar una letra ausente tras haber ganado"                      |
+| HU-03    | CA-8 Seguir intentando con la partida terminada (perdida o ganada) → no cambian las vidas ni el estado | ✅ Done      | `@CA-8` (2 escenarios) | "no descuenta vidas por debajo de 0 si se sigue adivinando tras perder", "no descuenta vidas si se intenta adivinar una letra ausente tras haber ganado" (este último se escribió antes que su AT: ver "Lecciones y desvíos del proceso") |
 
 ### HU-01 — Inicio de partida · ✅ Done
 
@@ -61,6 +61,20 @@ AT: [`features/letra-repetida.feature`](features/letra-repetida.feature) — CA-
 - Convención de commits (según Guía ATDD §3):
   - `RED:` (test en rojo) / `GREEN:` (código mínimo que lo pasa) / `REFACTOR:` (opcional).
   - **Hacer todos los commits localmente (`RED:` y `GREEN:`), pero hacer `git push` recién cuando el AT cierre en `GREEN:`** (nunca pushear con un `RED:` o con el AT todavía roto como tope de `main`, para no romper el pipeline de CI).
+
+## Lecciones y desvíos del proceso
+
+- **CA-8 "tras ganar" sin AT previo.** El UT "no descuenta vidas si se intenta adivinar una letra ausente
+  tras haber ganado" y la guarda `|| this.gano()` (`2d76af0` / `218ab51`) se escribieron sin un escenario
+  en rojo que los pidiera. El AT se agregó después y ya pasó en verde, por eso se commiteó como `TEST:`
+  y no como `RED:`. Lo correcto hubiera sido escribir primero el escenario en rojo y recién ahí el `RED:`
+  del UT. **Regla desde ahora: ningún UT sin un AT rojo que lo origine.** Si al programar aparece un caso
+  nuevo, primero va el escenario.
+- **Partida terminada vs. entrada inválida (decisión).** Con la partida terminada (ganada o perdida),
+  `adivinar` ignora cualquier entrada, incluso una inválida como `"1"`, sin tirar error. Para el
+  jugador no cambia nada, porque la UI muestra GANASTE / PERDISTE de todas formas.
+- **Integración.** Usar `git pull --rebase` en vez de merge. El merge `b5e09e2` cambió el orden
+  guarda/validación sin que ningún test lo pidiera.
 
 ## Cómo retomar en otra sesión o máquina
 

@@ -39,3 +39,14 @@ Característica: Desenlace de la partida
     Entonces se ven 0 vidas
     Y se ve el mensaje "PERDISTE"
     Y se ve la palabra "G A T O"
+
+  @CA-8
+  Escenario: No se descuentan vidas al intentar jugar tras ganar
+    Dado una partida con la palabra "GATO"
+    Cuando el jugador adivina la letra "G"
+    Y el jugador adivina la letra "A"
+    Y el jugador adivina la letra "T"
+    Y el jugador adivina la letra "O"
+    Y el jugador adivina la letra "Z"
+    Entonces se ven 6 vidas
+    Y se ve el mensaje "GANASTE"
