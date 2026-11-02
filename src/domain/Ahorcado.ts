@@ -10,7 +10,6 @@ export class Ahorcado {
 
   adivinar(letra: string): void {
     if (this.perdio() || this.gano()) return;
-    if (/\d/.test(letra)) throw new Error("Ingresá una sola letra");
     if (!/^[A-Za-z]$/.test(letra)) throw new Error("Ingresá una sola letra");
     if (this.yaIntentada(letra)) return;
     this.letrasIntentadas.add(letra);

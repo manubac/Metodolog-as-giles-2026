@@ -70,6 +70,10 @@ AT: [`features/letra-repetida.feature`](features/letra-repetida.feature) — CA-
   y no como `RED:`. Lo correcto hubiera sido escribir primero el escenario en rojo y recién ahí el `RED:`
   del UT. **Regla desde ahora: ningún UT sin un AT rojo que lo origine.** Si al programar aparece un caso
   nuevo, primero va el escenario.
+- **Fake sin limpiar.** El `/\d/` que quedó del fake de CA-7 era código muerto (la regex `/^[A-Za-z]$/`
+  ya rechaza los dígitos con el mismo mensaje). Se sacó en un `REFACTOR:`. **Regla desde ahora: después de
+  cada `GREEN:` que generaliza, revisar si quedó algo del fake y limpiarlo en un `REFACTOR:` propio, con los
+  tests en verde.**
 - **Partida terminada vs. entrada inválida (decisión).** Con la partida terminada (ganada o perdida),
   `adivinar` ignora cualquier entrada, incluso una inválida como `"1"`, sin tirar error. Para el
   jugador no cambia nada, porque la UI muestra GANASTE / PERDISTE de todas formas.
