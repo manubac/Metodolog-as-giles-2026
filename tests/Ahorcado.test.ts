@@ -109,4 +109,10 @@ describe("Ahorcado", () => {
 
     expect(() => juego.adivinar("AB")).toThrow("Ingresá una sola letra");
   });
+
+  it("arranca con la cantidad de vidas indicada", () => {
+    const juego = new Ahorcado("GATO", 8);
+
+    expect(juego.vidasRestantes()).toBe(8);
+  });
 });
