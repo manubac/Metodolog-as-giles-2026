@@ -121,4 +121,10 @@ describe("Ahorcado", () => {
 
     expect(juego.vidasRestantes()).toBe(6);
   });
+
+  it("un valor de vidas que no es un número usa 6 vidas", () => {
+    const juego = new Ahorcado("GATO", Number.NaN);
+
+    expect(juego.vidasRestantes()).toBe(6);
+  });
 });
