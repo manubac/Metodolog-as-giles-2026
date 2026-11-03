@@ -127,4 +127,10 @@ describe("Ahorcado", () => {
 
     expect(juego.vidasRestantes()).toBe(6);
   });
+
+  it("un valor de vidas no entero usa 6 vidas", () => {
+    const juego = new Ahorcado("GATO", 2.5);
+
+    expect(juego.vidasRestantes()).toBe(6);
+  });
 });
