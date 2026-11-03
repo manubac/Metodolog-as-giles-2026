@@ -15,3 +15,15 @@ Característica: Vidas configurables
       | vidas |
       | 8     |
       | 3     |
+
+  @CA-12
+  Esquema del escenario: Un valor de vidas inválido usa las 6 vidas por defecto
+    Dado una partida con la palabra "GATO" y "<valor>" vidas
+    Entonces se ven 6 vidas
+    Y se ve la palabra "_ _ _ _"
+
+    Ejemplos:
+      | valor |
+      | 0     |
+      | abc   |
+      | 2.5   |

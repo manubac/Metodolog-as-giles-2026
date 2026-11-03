@@ -11,6 +11,10 @@ Given("una partida con la palabra {string} y {int} vidas", async ({ page }, pala
   await page.goto(`/?word=${palabra}&lives=${vidas}`);
 });
 
+Given("una partida con la palabra {string} y {string} vidas", async ({ page }, palabra: string, valor: string) => {
+  await page.goto(`/?word=${palabra}&lives=${valor}`);
+});
+
 When("el jugador adivina la letra {string}", async ({ page }, letra: string) => {
   const input = page.getByRole("textbox");
   await input.fill(letra);
