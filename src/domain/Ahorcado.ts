@@ -6,7 +6,7 @@ export class Ahorcado {
 
   constructor(palabra: string, vidas = 6) {
     this.palabra = palabra;
-    this.vidas = vidas < 1 ? 6 : vidas;
+    this.vidas = Number.isNaN(vidas) || vidas < 1 ? 6 : vidas;
   }
 
   adivinar(letra: string): void {
