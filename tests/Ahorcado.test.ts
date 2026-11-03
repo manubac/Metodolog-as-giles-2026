@@ -115,4 +115,10 @@ describe("Ahorcado", () => {
 
     expect(juego.vidasRestantes()).toBe(8);
   });
+
+  it("un valor de vidas menor que 1 usa 6 vidas", () => {
+    const juego = new Ahorcado("GATO", 0);
+
+    expect(juego.vidasRestantes()).toBe(6);
+  });
 });
