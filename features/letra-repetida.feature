@@ -34,4 +34,24 @@ Característica: Validación de entrada
       | ?       |
       | AB      |
       |         |
-  
+
+  @CA-9
+  Esquema del escenario: Una letra en minúscula se trata como su mayúscula
+    Dado una partida con la palabra "GATO"
+    Cuando el jugador adivina la letra "<letra>"
+    Entonces se ve la palabra "<enmascarada>"
+    Y se ven <vidas> vidas
+
+    Ejemplos:
+      | letra | enmascarada | vidas |
+      | a     | _ A _ _     | 6     |
+      | o     | _ _ _ O     | 6     |
+
+  @CA-9
+  Escenario: Repetir una letra con distinta capitalización no penaliza e informa
+    Dado una partida con la palabra "GATO"
+    Cuando el jugador adivina la letra "E"
+    Y el jugador adivina la letra "e"
+    Entonces se ve la palabra "_ _ _ _"
+    Y se ven 5 vidas
+    Y se ve el mensaje "Ya intentaste la letra E"
