@@ -9,8 +9,9 @@ export class Ahorcado {
     this.vidas = !Number.isInteger(vidas) || vidas < 1 ? 6 : vidas;
   }
 
-  adivinar(letra: string): void {
+  adivinar(entrada: string): void {
     if (this.perdio() || this.gano()) return;
+    const letra = entrada.toUpperCase();
     if (!/^[A-Za-z]$/.test(letra)) throw new Error("Ingresá una sola letra");
     if (this.yaIntentada(letra)) return;
     this.letrasIntentadas.add(letra);
@@ -21,8 +22,9 @@ export class Ahorcado {
     }
   }
 
+
   yaIntentada(letra: string): boolean {
-    return this.letrasIntentadas.has(letra);
+    return this.letrasIntentadas.has(letra.toUpperCase());
   }
   perdio(): boolean {
     return this.vidas === 0;
