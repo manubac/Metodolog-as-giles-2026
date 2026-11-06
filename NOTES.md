@@ -26,6 +26,8 @@ heredan todos sus escenarios) y un tag `@CA-n` por escenario, más esta matriz.
 | HU-03    | CA-8 Seguir intentando con la partida terminada (perdida o ganada) → no cambian las vidas ni el estado | ✅ Done      | `@CA-8` (2 escenarios) | "no descuenta vidas por debajo de 0 si se sigue adivinando tras perder", "no descuenta vidas si se intenta adivinar una letra ausente tras haber ganado" (este último se escribió antes que su AT: ver "Lecciones y desvíos del proceso") |
 | HU-05    | CA-11 Iniciar con `?lives=N` → se ven N vidas (ejemplos: 8 y 3; sin `lives` quedan 6) | ✅ Done      | `@CA-11` | "arranca con la cantidad de vidas indicada" |
 | HU-05    | CA-12 Valor inválido de `lives` (no es entero o es menor que 1; ejemplos: `0`, `abc`, `2.5`) → se usan 6 vidas | ✅ Done      | `@CA-12` | "un valor de vidas menor que 1 usa 6 vidas", "un valor de vidas que no es un número usa 6 vidas", "un valor de vidas no entero usa 6 vidas" |
+| HU-09    | CA-21 Iniciar con `?category=X` → se ve la categoría y la palabra sale de esa categoría (ejemplos: animales, frutas) | ✅ Done | `@CA-21` | "elige la primera palabra de la categoría cuando el azar da 0", "elige la última palabra de la categoría cuando el azar se acerca a 1" |
+| HU-09    | CA-22 Categoría inexistente (o sin categoría ni `word`) → se elige al azar entre todas las categorías | ✅ Done | `@CA-22` | "con una categoría inexistente elige al azar entre todas las categorías", "sin categoría elige al azar entre todas las categorías" |
 
 ### HU-01 — Inicio de partida · ✅ Done
 
@@ -58,6 +60,15 @@ fácil o más exigente según cómo quiera jugar.
 AT: [`features/vidas-configurables.feature`](features/vidas-configurables.feature) — CA-11, CA-12.
 Seam: `?lives=N` en la URL, igual que `?word=`. `index.ts` solo lee y convierte el parámetro; el valor por
 defecto (6) vive en `Ahorcado`, igual que la validación de valores inválidos (CA-12).
+
+### HU-09 — Categoría de la palabra · ✅ Done
+
+**Como** jugador **quiero** que la palabra secreta salga de una categoría **para** tener una pista sobre
+qué palabra estoy adivinando.
+AT: [`features/categoria-palabra.feature`](features/categoria-palabra.feature) — CA-21, CA-22.
+Seam: `?category=` en la URL. El azar se inyecta en `elegirPalabra(categoria, random)` (UT con azar
+controlado); en el AT se fija `Math.random = () => 0` en el navegador, y por eso el orden de las listas en
+`palabras.ts` es parte del contrato. `?word=` sigue ganando sobre `?category=`.
 
 ## Proceso y rotación de autoría
 
