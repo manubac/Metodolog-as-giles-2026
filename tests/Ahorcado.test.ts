@@ -134,3 +134,19 @@ describe("Ahorcado", () => {
     expect(juego.vidasRestantes()).toBe(6);
   });
 });
+it("trata una letra minúscula como su mayúscula", () => {
+    const juego = new Ahorcado("GATO");
+
+    juego.adivinar("a");
+
+    expect(juego.palabraEnmascarada()).toBe("_ A _ _");
+    expect(juego.vidasRestantes()).toBe(6);
+  });
+
+  it("reconoce como ya intentada una letra sin importar mayúsculas o minúsculas", () => {
+    const juego = new Ahorcado("GATO");
+
+    juego.adivinar("E");
+
+    expect(juego.yaIntentada("e")).toBe(true);
+  });
