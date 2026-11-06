@@ -15,6 +15,13 @@ Given("una partida con la palabra {string} y {string} vidas", async ({ page }, p
   await page.goto(`/?word=${palabra}&lives=${valor}`);
 });
 
+Given("una partida de la categoría {string}", async ({ page }, categoria: string) => {
+  await page.addInitScript(() => {
+    Math.random = () => 0;
+  });
+  await page.goto(`/?category=${categoria}`);
+});
+
 When("el jugador adivina la letra {string}", async ({ page }, letra: string) => {
   const input = page.getByRole("textbox");
   await input.fill(letra);
@@ -31,4 +38,8 @@ Then("se ven {int} vidas", async ({ page }, vidas: number) => {
 
 Then("se ve el mensaje {string}", async ({ page }, mensaje: string) => {
   await expect(page.getByTestId("mensaje")).toHaveText(mensaje);
+});
+
+Then("se ve la categoría {string}", async ({ page }, categoria: string) => {
+  await expect(page.getByTestId("categoria")).toHaveText(`Categoría: ${categoria}`);
 });
