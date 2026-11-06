@@ -1,6 +1,6 @@
 import type { Ahorcado } from "../domain/Ahorcado";
 
-export function mountApp(root: HTMLElement, juego: Ahorcado): void {
+export function mountApp(root: HTMLElement, juego: Ahorcado, categoria?: string): void {
   const word = document.createElement("p");
   word.dataset.testid = "word";
 
@@ -40,4 +40,10 @@ export function mountApp(root: HTMLElement, juego: Ahorcado): void {
 
   render();
   root.append(word, lives, mensaje, input);
+  if (categoria !== undefined) {
+    const categoriaEl = document.createElement("p");
+    categoriaEl.dataset.testid = "categoria";
+    categoriaEl.textContent = `Categoría: ${categoria}`;
+    root.prepend(categoriaEl);
+  }
 }

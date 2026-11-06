@@ -1,11 +1,13 @@
 import { Ahorcado } from "../domain/Ahorcado";
+import { elegirPalabra } from "../domain/palabras";
 import { mountApp } from "./main";
 
 const params = new URLSearchParams(window.location.search);
-const palabra = params.get("word") ?? "GATO";
+const word = params.get("word");
 const lives = params.get("lives");
+const elegida = word === null ? elegirPalabra(params.get("category")) : { categoria: undefined, palabra: word };
 
 const root = document.getElementById("app");
 if (root) {
-  mountApp(root, new Ahorcado(palabra, lives === null ? undefined : Number(lives)));
-}
+  mountApp(root, new Ahorcado(elegida.palabra, lives === null ? undefined : Number(lives)), elegida.categoria);
+};
