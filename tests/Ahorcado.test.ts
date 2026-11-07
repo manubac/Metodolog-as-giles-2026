@@ -148,6 +148,15 @@ describe("Ahorcado", () => {
 
     expect(juego.puntaje()).toBe(60);
   });
+    it("al ganar con errores el puntaje es 10 por cada vida que quedó", () => {
+    const juego = new Ahorcado("GATO");
+
+    for (const letra of ["E", "I", "G", "A", "T", "O"]) {
+      juego.adivinar(letra);
+    }
+
+    expect(juego.puntaje()).toBe(40);
+  });
   });
 
 it("trata una letra minúscula como su mayúscula", () => {
