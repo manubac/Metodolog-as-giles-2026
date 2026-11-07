@@ -61,6 +61,12 @@ AT: [`features/vidas-configurables.feature`](features/vidas-configurables.featur
 Seam: `?lives=N` en la URL, igual que `?word=`. `index.ts` solo lee y convierte el parámetro; el valor por
 defecto (6) vive en `Ahorcado`, igual que la validación de valores inválidos (CA-12).
 
+## HU-07 puntaje de la partida ✅ Done
+
+**Como jugador** quiero ver el puntaje de mi partida **para** saber qué tan bien jugué.
+AT: [`features/puntaje-partida.feature`](features/puntaje-partida.feature) - CA-15, CA-16, CA-17.
+Seam: el puntaje se calcula en Ahorcado mediante puntaje(): devuelve 10 puntos por cada vida restante si el jugador gana, y 0 si pierde o la partida sigue en curso. main.ts consulta este método y muestra el resultado en pantalla.
+
 ### HU-09 — Categoría de la palabra · ✅ Done
 
 **Como** jugador **quiero** que la palabra secreta salga de una categoría **para** tener una pista sobre

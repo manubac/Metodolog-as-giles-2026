@@ -157,6 +157,16 @@ describe("Ahorcado", () => {
 
     expect(juego.puntaje()).toBe(40);
   });
+  it("al perder la partida el puntaje es 0", () => {
+  const juego = new Ahorcado("GATO");
+
+  for (const letra of ["E", "I", "U", "R", "S", "N"]) {
+    juego.adivinar(letra);
+  }
+
+  expect(juego.perdio()).toBe(true);
+  expect(juego.puntaje()).toBe(0);
+});
   });
 
 it("trata una letra minúscula como su mayúscula", () => {
