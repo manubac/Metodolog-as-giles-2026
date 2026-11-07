@@ -43,3 +43,6 @@ Then("se ve el mensaje {string}", async ({ page }, mensaje: string) => {
 Then("se ve la categoría {string}", async ({ page }, categoria: string) => {
   await expect(page.getByTestId("categoria")).toHaveText(`Categoría: ${categoria}`);
 });
+Then("se ve el puntaje {int}", async ({ page }, puntaje: number) => {
+  await expect(page.getByTestId("score")).toHaveText(`Puntaje: ${puntaje}`);
+});
