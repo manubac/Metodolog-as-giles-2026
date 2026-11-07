@@ -9,3 +9,25 @@ Característica: Puntaje de la partida
   Escenario: La partida arranca con puntaje 0
     Dado una partida con la palabra "GATO"
     Entonces se ve el puntaje 0
+
+    @CA-16
+  Escenario: Ganar sin errores da 10 puntos por cada vida
+    Dado una partida con la palabra "GATO"
+    Cuando el jugador adivina la letra "G"
+    Y el jugador adivina la letra "A"
+    Y el jugador adivina la letra "T"
+    Y el jugador adivina la letra "O"
+    Entonces se ve el mensaje "GANASTE"
+    Y se ve el puntaje 60
+
+  @CA-16
+  Escenario: Ganar con errores da 10 puntos por cada vida que quedó
+    Dado una partida con la palabra "GATO"
+    Cuando el jugador adivina la letra "E"
+    Y el jugador adivina la letra "I"
+    Y el jugador adivina la letra "G"
+    Y el jugador adivina la letra "A"
+    Y el jugador adivina la letra "T"
+    Y el jugador adivina la letra "O"
+    Entonces se ve el mensaje "GANASTE"
+    Y se ve el puntaje 40
