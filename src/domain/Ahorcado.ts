@@ -43,7 +43,7 @@ export class Ahorcado {
   vidasRestantes(): number {
     return this.vidas;
   }
-   puntaje(): number {
-    return 0;
+     puntaje(): number {
+    return this.gano() ? 60 : 0;
   }
 }
