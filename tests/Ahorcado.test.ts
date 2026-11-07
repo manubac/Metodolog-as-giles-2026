@@ -137,8 +137,19 @@ describe("Ahorcado", () => {
     const juego = new Ahorcado("GATO");
 
     expect(juego.puntaje()).toBe(0);
+     });
+     
+    it("al ganar sin errores el puntaje es 10 por cada vida", () => {
+    const juego = new Ahorcado("GATO");
+
+    for (const letra of ["G", "A", "T", "O"]) {
+      juego.adivinar(letra);
+    }
+
+    expect(juego.puntaje()).toBe(60);
   });
-});
+  });
+
 it("trata una letra minúscula como su mayúscula", () => {
     const juego = new Ahorcado("GATO");
 
