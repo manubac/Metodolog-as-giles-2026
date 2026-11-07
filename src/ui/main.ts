@@ -4,6 +4,9 @@ export function mountApp(root: HTMLElement, juego: Ahorcado, categoria?: string)
   const word = document.createElement("p");
   word.dataset.testid = "word";
 
+  const score = document.createElement("p");
+  score.dataset.testid = "score";
+
   const lives = document.createElement("p");
   lives.dataset.testid = "lives";
 
@@ -16,6 +19,7 @@ export function mountApp(root: HTMLElement, juego: Ahorcado, categoria?: string)
   function render(): void {
     word.textContent = juego.palabraEnmascarada();
     lives.textContent = String(juego.vidasRestantes());
+    score.textContent = `Puntaje: ${juego.puntaje()}`;
     if (juego.gano()) {
       mensaje.textContent = "GANASTE";
     } else if (juego.perdio()) {
@@ -39,11 +43,12 @@ export function mountApp(root: HTMLElement, juego: Ahorcado, categoria?: string)
   });
 
   render();
-  root.append(word, lives, mensaje, input);
+  root.append(word, lives, score, mensaje, input);
   if (categoria !== undefined) {
     const categoriaEl = document.createElement("p");
     categoriaEl.dataset.testid = "categoria";
     categoriaEl.textContent = `Categoría: ${categoria}`;
     root.prepend(categoriaEl);
+
   }
 }
