@@ -31,3 +31,16 @@ Característica: Puntaje de la partida
     Y el jugador adivina la letra "O"
     Entonces se ve el mensaje "GANASTE"
     Y se ve el puntaje 40
+
+   @CA-17
+  Escenario: Perder la partida deja el puntaje en 0
+    Dado una partida con la palabra "GATO"
+    Cuando el jugador adivina la letra "G"
+    Y el jugador adivina la letra "E"
+    Y el jugador adivina la letra "I"
+    Y el jugador adivina la letra "U"
+    Y el jugador adivina la letra "R"
+    Y el jugador adivina la letra "S"
+    Y el jugador adivina la letra "N"
+    Entonces se ve el mensaje "PERDISTE"
+    Y se ve el puntaje 0 
