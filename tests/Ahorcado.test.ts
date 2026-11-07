@@ -133,6 +133,11 @@ describe("Ahorcado", () => {
 
     expect(juego.vidasRestantes()).toBe(6);
   });
+    it("arranca con puntaje 0", () => {
+    const juego = new Ahorcado("GATO");
+
+    expect(juego.puntaje()).toBe(0);
+  });
 });
 it("trata una letra minúscula como su mayúscula", () => {
     const juego = new Ahorcado("GATO");
