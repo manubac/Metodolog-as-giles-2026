@@ -43,4 +43,7 @@ export class Ahorcado {
   vidasRestantes(): number {
     return this.vidas;
   }
+   puntaje(): number {
+    return 0;
+  }
 }
