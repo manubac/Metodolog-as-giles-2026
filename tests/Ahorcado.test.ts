@@ -205,3 +205,13 @@ it("trata una letra minúscula como su mayúscula", () => {
   });
 
 
+  it("pedir pista descuenta una vida", () => {
+    const juego = new Ahorcado("GATO");
+
+    juego.pedirPista();
+
+    expect(juego.vidasRestantes()).toBe(5);
+  });
+
+
+
