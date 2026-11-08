@@ -231,3 +231,14 @@ it("trata una letra minúscula como su mayúscula", () => {
     expect(juego.vidasRestantes()).toBe(6);
     expect(juego.gano()).toBe(true);
   });
+
+
+  it("no descuenta vidas al pedir pista tras perder", () => {
+    const juego = new Ahorcado("GATO", 1);
+
+    juego.adivinar("E");
+    juego.pedirPista();
+
+    expect(juego.vidasRestantes()).toBe(0);
+    expect(juego.perdio()).toBe(true);
+  });
