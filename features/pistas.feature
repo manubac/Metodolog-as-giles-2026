@@ -16,3 +16,12 @@ Característica: Pistas
       | vidas | restantes |
       | 6     | 5         |
       | 3     | 2         |
+
+
+  @CA-19
+  Escenario: No se puede pedir una pista con una sola vida
+    Dado una partida con la palabra "GATO" y 1 vidas
+    Cuando el jugador pide una pista
+    Entonces se ve el mensaje "No te quedan vidas para pedir una pista"
+    Y se ven 1 vidas
+    Y se ve la palabra "_ _ _ _"
