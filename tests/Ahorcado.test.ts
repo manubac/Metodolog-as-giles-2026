@@ -193,3 +193,15 @@ it("trata una letra minúscula como su mayúscula", () => {
 
     expect(juego.palabraEnmascarada()).toBe("G _ _ _");
   });
+
+  it("la pista revela la primera letra que sigue oculta, salteando las ya reveladas", () => {
+    const juego = new Ahorcado("GATO");
+
+    juego.adivinar("G");
+    juego.adivinar("A");
+    juego.pedirPista();
+
+    expect(juego.palabraEnmascarada()).toBe("G A T _");
+  });
+
+
