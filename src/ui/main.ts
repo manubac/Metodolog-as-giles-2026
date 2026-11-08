@@ -15,6 +15,10 @@ export function mountApp(root: HTMLElement, juego: Ahorcado, categoria?: string)
 
   const input = document.createElement("input");
   input.type = "text";
+
+  const pista = document.createElement("button");
+  pista.textContent = "Pista";
+
   let aviso = "";
   function render(): void {
     word.textContent = juego.palabraEnmascarada();
@@ -42,8 +46,16 @@ export function mountApp(root: HTMLElement, juego: Ahorcado, categoria?: string)
     render();
   });
 
+
+  pista.addEventListener("click", () => {
+    juego.pedirPista();
+    aviso = "";
+    render();
+  });
+
+
   render();
-  root.append(word, lives, score, mensaje, input);
+  root.append(word, lives, score, mensaje, input, pista);
   if (categoria !== undefined) {
     const categoriaEl = document.createElement("p");
     categoriaEl.dataset.testid = "categoria";
