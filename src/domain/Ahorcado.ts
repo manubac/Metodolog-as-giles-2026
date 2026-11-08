@@ -45,6 +45,7 @@ export class Ahorcado {
   }
 
   pedirPista(): void {
+    if (this.vidas === 1) throw new Error("No te quedan vidas para pedir una pista");
     const oculta = this.primeraLetraOculta();
     if (oculta) this.letrasAdivinadas.add(oculta);
     this.vidas -= 1;
