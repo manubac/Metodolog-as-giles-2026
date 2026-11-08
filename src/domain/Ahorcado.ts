@@ -43,6 +43,9 @@ export class Ahorcado {
   vidasRestantes(): number {
     return this.vidas;
   }
+    pedirPista(): void {
+    this.letrasAdivinadas.add(this.palabra[0]);
+  }
   
       puntaje(): number {
     return this.gano() ? this.vidas * 10 : 0;
