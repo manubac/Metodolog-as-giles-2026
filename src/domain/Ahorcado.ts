@@ -47,6 +47,7 @@ export class Ahorcado {
   pedirPista(): void {
     const oculta = this.primeraLetraOculta();
     if (oculta) this.letrasAdivinadas.add(oculta);
+    this.vidas -= 1;
   }
 
   puntaje(): number {
