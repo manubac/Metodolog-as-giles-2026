@@ -214,4 +214,10 @@ it("trata una letra minúscula como su mayúscula", () => {
   });
 
 
+  it("no da pista si queda una sola vida", () => {
+    const juego = new Ahorcado("GATO", 1);
 
+    expect(() => juego.pedirPista()).toThrow("No te quedan vidas para pedir una pista");
+    expect(juego.vidasRestantes()).toBe(1);
+    expect(juego.palabraEnmascarada()).toBe("_ _ _ _");
+  });
