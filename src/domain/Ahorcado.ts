@@ -22,15 +22,16 @@ export class Ahorcado {
     }
   }
 
-
   yaIntentada(letra: string): boolean {
     return this.letrasIntentadas.has(letra.toUpperCase());
   }
+
   perdio(): boolean {
     return this.vidas === 0;
   }
+
   gano(): boolean {
-    return this.primeraLetraOculta() === undefined;
+    return this.letrasOcultas().length === 0;
   }
 
   palabraEnmascarada(): string {
@@ -47,10 +48,9 @@ export class Ahorcado {
   pedirPista(): void {
     if (this.perdio() || this.gano()) return;
     if (this.vidas === 1) throw new Error("No te quedan vidas para pedir una pista");
-    const ocultas = new Set(this.palabra.split("").filter((letra) => !this.letrasAdivinadas.has(letra)));
-    if (ocultas.size === 1) throw new Error("La última letra la tenés que adivinar vos");
-    const oculta = this.primeraLetraOculta();
-    if (oculta) this.letrasAdivinadas.add(oculta);
+    const ocultas = this.letrasOcultas();
+    if (ocultas.length === 1) throw new Error("La última letra la tenés que adivinar vos");
+    this.letrasAdivinadas.add(ocultas[0]);
     this.vidas -= 1;
   }
 
@@ -58,7 +58,7 @@ export class Ahorcado {
     return this.gano() ? this.vidas * 10 : 0;
   }
 
-  private primeraLetraOculta(): string | undefined {
-    return this.palabra.split("").find((letra) => !this.letrasAdivinadas.has(letra));
+  private letrasOcultas(): string[] {
+    return [...new Set(this.palabra.split("").filter((letra) => !this.letrasAdivinadas.has(letra)))];
   }
 }
