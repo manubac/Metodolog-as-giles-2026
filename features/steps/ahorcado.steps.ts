@@ -28,6 +28,10 @@ When("el jugador adivina la letra {string}", async ({ page }, letra: string) => 
   await input.press("Enter");
 });
 
+When("el jugador pide una pista", async ({ page }) => {
+  await page.getByRole("button", { name: "Pista" }).click();
+});
+
 Then("se ve la palabra {string}", async ({ page }, esperada: string) => {
   await expect(page.getByTestId("word")).toHaveText(esperada);
 });
