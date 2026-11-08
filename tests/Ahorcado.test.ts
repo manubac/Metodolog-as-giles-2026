@@ -204,7 +204,6 @@ it("trata una letra minúscula como su mayúscula", () => {
     expect(juego.palabraEnmascarada()).toBe("G A T _");
   });
 
-
   it("pedir pista descuenta una vida", () => {
     const juego = new Ahorcado("GATO");
 
@@ -213,11 +212,22 @@ it("trata una letra minúscula como su mayúscula", () => {
     expect(juego.vidasRestantes()).toBe(5);
   });
 
-
   it("no da pista si queda una sola vida", () => {
     const juego = new Ahorcado("GATO", 1);
 
     expect(() => juego.pedirPista()).toThrow("No te quedan vidas para pedir una pista");
     expect(juego.vidasRestantes()).toBe(1);
     expect(juego.palabraEnmascarada()).toBe("_ _ _ _");
+  });
+
+  it("no descuenta vidas al pedir pista tras ganar", () => {
+    const juego = new Ahorcado("GATO");
+
+    for (const letra of ["G", "A", "T", "O"]) {
+      juego.adivinar(letra);
+    }
+    juego.pedirPista();
+
+    expect(juego.vidasRestantes()).toBe(6);
+    expect(juego.gano()).toBe(true);
   });
