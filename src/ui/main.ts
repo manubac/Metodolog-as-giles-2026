@@ -48,10 +48,15 @@ export function mountApp(root: HTMLElement, juego: Ahorcado, categoria?: string)
 
 
   pista.addEventListener("click", () => {
-    juego.pedirPista();
     aviso = "";
+    try {
+      juego.pedirPista();
+    } catch (error) {
+      aviso = (error as Error).message;
+    }
     render();
   });
+
 
 
   render();
