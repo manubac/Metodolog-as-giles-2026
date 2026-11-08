@@ -25,3 +25,16 @@ Característica: Pistas
     Entonces se ve el mensaje "No te quedan vidas para pedir una pista"
     Y se ven 1 vidas
     Y se ve la palabra "_ _ _ _"
+
+
+  @CA-20
+  Escenario: Pedir una pista tras ganar no descuenta vidas
+    Dado una partida con la palabra "GATO"
+    Cuando el jugador adivina la letra "G"
+    Y el jugador adivina la letra "A"
+    Y el jugador adivina la letra "T"
+    Y el jugador adivina la letra "O"
+    Y el jugador pide una pista
+    Entonces se ven 6 vidas
+    Y se ve el mensaje "GANASTE"
+
