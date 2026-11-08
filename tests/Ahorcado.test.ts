@@ -242,3 +242,16 @@ it("trata una letra minúscula como su mayúscula", () => {
     expect(juego.vidasRestantes()).toBe(0);
     expect(juego.perdio()).toBe(true);
   });
+
+
+  it("no da pista si queda una sola letra oculta", () => {
+    const juego = new Ahorcado("GATO");
+
+    for (const letra of ["G", "A", "T"]) {
+      juego.adivinar(letra);
+    }
+
+    expect(() => juego.pedirPista()).toThrow("La última letra la tenés que adivinar vos");
+    expect(juego.palabraEnmascarada()).toBe("G A T _");
+    expect(juego.vidasRestantes()).toBe(6);
+  });
