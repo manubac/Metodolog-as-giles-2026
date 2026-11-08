@@ -30,7 +30,7 @@ export class Ahorcado {
     return this.vidas === 0;
   }
   gano(): boolean {
-    return this.palabra.split("").every((letra) => this.letrasAdivinadas.has(letra));
+    return this.primeraLetraOculta() === undefined;
   }
 
   palabraEnmascarada(): string {
@@ -43,12 +43,17 @@ export class Ahorcado {
   vidasRestantes(): number {
     return this.vidas;
   }
-    pedirPista(): void {
-    const oculta = this.palabra.split("").find((letra) => !this.letrasAdivinadas.has(letra));
+
+  pedirPista(): void {
+    const oculta = this.primeraLetraOculta();
     if (oculta) this.letrasAdivinadas.add(oculta);
   }
-  
-      puntaje(): number {
+
+  puntaje(): number {
     return this.gano() ? this.vidas * 10 : 0;
+  }
+
+  private primeraLetraOculta(): string | undefined {
+    return this.palabra.split("").find((letra) => !this.letrasAdivinadas.has(letra));
   }
 }
