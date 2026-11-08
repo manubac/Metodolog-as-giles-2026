@@ -46,3 +46,15 @@ Característica: Pistas
     Entonces se ven 0 vidas
     Y se ve el mensaje "PERDISTE"
     Y se ve la palabra "G A T O"
+
+
+  @CA-23
+  Escenario: La pista no revela la última letra oculta
+    Dado una partida con la palabra "GATO"
+    Cuando el jugador adivina la letra "G"
+    Y el jugador adivina la letra "A"
+    Y el jugador adivina la letra "T"
+    Y el jugador pide una pista
+    Entonces se ve el mensaje "La última letra la tenés que adivinar vos"
+    Y se ve la palabra "G A T _"
+    Y se ven 6 vidas
