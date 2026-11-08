@@ -38,3 +38,11 @@ Característica: Pistas
     Entonces se ven 6 vidas
     Y se ve el mensaje "GANASTE"
 
+  @CA-20
+  Escenario: Pedir una pista tras perder no descuenta vidas
+    Dado una partida con la palabra "GATO" y 1 vidas
+    Cuando el jugador adivina la letra "E"
+    Y el jugador pide una pista
+    Entonces se ven 0 vidas
+    Y se ve el mensaje "PERDISTE"
+    Y se ve la palabra "G A T O"
