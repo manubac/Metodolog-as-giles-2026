@@ -185,3 +185,11 @@ it("trata una letra minúscula como su mayúscula", () => {
 
     expect(juego.yaIntentada("e")).toBe(true);
   });
+
+  it("pedir pista revela la primera letra oculta", () => {
+    const juego = new Ahorcado("GATO");
+
+    juego.pedirPista();
+
+    expect(juego.palabraEnmascarada()).toBe("G _ _ _");
+  });
