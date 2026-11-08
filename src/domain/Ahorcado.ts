@@ -47,6 +47,8 @@ export class Ahorcado {
   pedirPista(): void {
     if (this.perdio() || this.gano()) return;
     if (this.vidas === 1) throw new Error("No te quedan vidas para pedir una pista");
+    const ocultas = new Set(this.palabra.split("").filter((letra) => !this.letrasAdivinadas.has(letra)));
+    if (ocultas.size === 1) throw new Error("La última letra la tenés que adivinar vos");
     const oculta = this.primeraLetraOculta();
     if (oculta) this.letrasAdivinadas.add(oculta);
     this.vidas -= 1;
