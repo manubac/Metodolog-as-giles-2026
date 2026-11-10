@@ -55,3 +55,15 @@ Característica: Validación de entrada
     Entonces se ve la palabra "_ _ _ _"
     Y se ven 5 vidas
     Y se ve el mensaje "Ya intentaste la letra E"
+
+  @CA-10
+  Esquema del escenario: La Ñ se acepta como una letra más
+    Dado una partida con la palabra "ÑANDU"
+    Cuando el jugador adivina la letra "<letra>"
+    Entonces se ve la palabra "Ñ _ _ _ _"
+    Y se ven 6 vidas
+
+    Ejemplos:
+      | letra |
+      | Ñ     |
+      | ñ     |
