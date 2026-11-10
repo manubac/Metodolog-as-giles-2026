@@ -1,3 +1,3 @@
-export function vidasDelNivel(_nivel: string): number | undefined {
-  return 8;
+export function vidasDelNivel(nivel: string): number | undefined {
+  return nivel === "facil" ? 8 : 4;
 }
