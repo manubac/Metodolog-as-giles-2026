@@ -27,6 +27,8 @@ heredan todos sus escenarios) y un tag `@CA-n` por escenario, más esta matriz.
 | HU-04    | CA-10 La Ñ se acepta como una letra más (ejemplos: `Ñ` y `ñ` con ÑANDU → `Ñ _ _ _ _`, 6 vidas)                       | ✅ Done | `@CA-10`                | "acepta la Ñ como letra" (la `ñ` minúscula no necesita UT propio: `toUpperCase()` ya la convierte desde CA-9)                                                                                                                             |
 | HU-05    | CA-11 Iniciar con `?lives=N` → se ven N vidas (ejemplos: 8 y 3; sin `lives` quedan 6)                                | ✅ Done | `@CA-11`                | "arranca con la cantidad de vidas indicada"                                                                                                                                                                                               |
 | HU-05    | CA-12 Valor inválido de `lives` (no es entero o es menor que 1; ejemplos: `0`, `abc`, `2.5`) → se usan 6 vidas       | ✅ Done | `@CA-12`                | "un valor de vidas menor que 1 usa 6 vidas", "un valor de vidas que no es un número usa 6 vidas", "un valor de vidas no entero usa 6 vidas"                                                                                               |
+| HU-06    | CA-13 Elegir nivel con `?level=` → fácil 8 vidas, normal 6, difícil 4                                                | ✅ Done | `@CA-13`                | "el nivel fácil da 8 vidas", "el nivel difícil da 4 vidas", "el nivel normal da 6 vidas"                                                                                                                                                  |
+| HU-06    | CA-14 Con `?lives=N` y `?level=` juntos → gana `lives` (ejemplo: `lives=3&level=facil` → 3 vidas)                   | ⬜ Pendiente | —                    | —                                                                                                                                                                                                                                         |
 | HU-07    | CA-15 Iniciar partida → se ve el puntaje 0                                                                           | ✅ Done | `@CA-15`                | "arranca con puntaje 0"                                                                                                                                                                                                                   |
 | HU-07    | CA-16 Ganar → 10 puntos por cada vida restante (sin errores: 60; con 2 errores: 40)                                  | ✅ Done | `@CA-16` (2 escenarios) | "al ganar sin errores el puntaje es 10 por cada vida", "al ganar con errores el puntaje es 10 por cada vida que quedó"                                                                                                                    |
 | HU-07    | CA-17 Perder → el puntaje queda en 0                                                                                 | ✅ Done | `@CA-17`                | "al perder la partida el puntaje es 0"                                                                                                                                                                                                    |
@@ -69,6 +71,16 @@ fácil o más exigente según cómo quiera jugar.
 AT: [`features/vidas-configurables.feature`](features/vidas-configurables.feature) — CA-11, CA-12.
 Seam: `?lives=N` en la URL, igual que `?word=`. `index.ts` solo lee y convierte el parámetro; el valor por
 defecto (6) vive en `Ahorcado`, igual que la validación de valores inválidos (CA-12).
+
+### HU-06 — Nivel de dificultad · 🟡 En curso
+
+**Como** jugador **quiero** elegir la dificultad por nombre (fácil, normal o difícil) **para** jugar a mi medida
+sin tener que saber cuántas vidas corresponden a cada una.
+AT: [`features/nivel-dificultad.feature`](features/nivel-dificultad.feature) — CA-13 (CA-14 pendiente).
+Seam: `?level=facil|normal|dificil` en la URL. La regla nivel → vidas vive en el dominio
+(`vidasDelNivel` en `src/domain/niveles.ts`); `index.ts` solo lee el parámetro. Un nivel inexistente
+devuelve `undefined` y `Ahorcado` usa sus 6 vidas por defecto (HU-05), sin código propio. El nivel elegido
+no se muestra en pantalla: lo muestran las vidas.
 
 ### HU-07 — Puntaje de la partida · ✅ Done
 
