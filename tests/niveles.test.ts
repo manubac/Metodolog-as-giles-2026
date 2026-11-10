@@ -9,4 +9,8 @@ describe("vidasDelNivel", () => {
   it("el nivel difícil da 4 vidas", () => {
     expect(vidasDelNivel("dificil")).toBe(4);
   });
+
+  it("el nivel normal da 6 vidas", () => {
+    expect(vidasDelNivel("normal")).toBe(6);
+  });
 });
