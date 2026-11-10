@@ -15,6 +15,10 @@ Given("una partida con la palabra {string} y {string} vidas", async ({ page }, p
   await page.goto(`/?word=${palabra}&lives=${valor}`);
 });
 
+Given("una partida con la palabra {string} en nivel {string}", async ({ page }, palabra: string, nivel: string) => {
+  await page.goto(`/?word=${palabra}&level=${nivel}`);
+});
+
 Given("una partida de la categoría {string}", async ({ page }, categoria: string) => {
   await page.addInitScript(() => {
     Math.random = () => 0;
