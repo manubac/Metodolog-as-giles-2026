@@ -12,7 +12,7 @@ export class Ahorcado {
   adivinar(entrada: string): void {
     if (this.perdio() || this.gano()) return;
     const letra = entrada.toUpperCase();
-    if (!/^[A-Za-z]$/.test(letra)) throw new Error("Ingresá una sola letra");
+    if (!/^[A-Z]$/.test(letra)) throw new Error("Ingresá una sola letra");
     if (this.yaIntentada(letra)) return;
     this.letrasIntentadas.add(letra);
     if (this.palabra.includes(letra)) {
