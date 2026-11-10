@@ -1,3 +1,3 @@
 export function vidasDelNivel(_nivel: string): number | undefined {
-  return undefined;
+  return 8;
 }
