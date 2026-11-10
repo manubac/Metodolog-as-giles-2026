@@ -24,6 +24,7 @@ heredan todos sus escenarios) y un tag `@CA-n` por escenario, más esta matriz.
 | HU-04    | CA-7 Entrada inválida (no letra) → no penaliza e informa `"Ingresá una sola letra"`                                  | ✅ Done | `@CA-7`                 | "rechaza un carácter que no es letra sin descontar vidas", "rechaza una entrada de más de una letra"                                                                                                                                      |
 | HU-03    | CA-8 Seguir intentando con la partida terminada (perdida o ganada) → no cambian las vidas ni el estado               | ✅ Done | `@CA-8` (2 escenarios)  | "no descuenta vidas por debajo de 0 si se sigue adivinando tras perder", "no descuenta vidas si se intenta adivinar una letra ausente tras haber ganado" (este último se escribió antes que su AT: ver "Lecciones y desvíos del proceso") |
 | HU-04    | CA-9 Letra en minúscula → se trata como su mayúscula (también al detectar repetidas)                                 | ✅ Done | `@CA-9` (2 escenarios)  | "trata una letra minúscula como su mayúscula", "reconoce como ya intentada una letra sin importar mayúsculas o minúsculas"                                                                                                                |
+| HU-04    | CA-10 La Ñ se acepta como una letra más (ejemplos: `Ñ` y `ñ` con ÑANDU → `Ñ _ _ _ _`, 6 vidas)                       | ✅ Done | `@CA-10`                | "acepta la Ñ como letra" (la `ñ` minúscula no necesita UT propio: `toUpperCase()` ya la convierte desde CA-9)                                                                                                                             |
 | HU-05    | CA-11 Iniciar con `?lives=N` → se ven N vidas (ejemplos: 8 y 3; sin `lives` quedan 6)                                | ✅ Done | `@CA-11`                | "arranca con la cantidad de vidas indicada"                                                                                                                                                                                               |
 | HU-05    | CA-12 Valor inválido de `lives` (no es entero o es menor que 1; ejemplos: `0`, `abc`, `2.5`) → se usan 6 vidas       | ✅ Done | `@CA-12`                | "un valor de vidas menor que 1 usa 6 vidas", "un valor de vidas que no es un número usa 6 vidas", "un valor de vidas no entero usa 6 vidas"                                                                                               |
 | HU-07    | CA-15 Iniciar partida → se ve el puntaje 0                                                                           | ✅ Done | `@CA-15`                | "arranca con puntaje 0"                                                                                                                                                                                                                   |
@@ -58,7 +59,8 @@ AT: [`features/desenlace-partida.feature`](features/desenlace-partida.feature) �
 
 **Como** jugador **quiero** que el sistema valide mis ingresos de teclado **para** no perder vidas por
 errores o por letras que ya intenté.
-AT: [`features/letra-repetida.feature`](features/letra-repetida.feature) — CA-6, CA-7, CA-9.
+AT: [`features/letra-repetida.feature`](features/letra-repetida.feature) — CA-6, CA-7, CA-9, CA-10.
+Los acentos (`á` == `a`) quedan fuera de alcance: hoy se rechazan como entrada inválida.
 
 ### HU-05 — Vidas configurables · ✅ Done
 
