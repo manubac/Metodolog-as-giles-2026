@@ -255,3 +255,11 @@ it("trata una letra minúscula como su mayúscula", () => {
     expect(juego.palabraEnmascarada()).toBe("G A T _");
     expect(juego.vidasRestantes()).toBe(6);
   });
+
+  it("acepta la Ñ como letra", () => {
+    const juego = new Ahorcado("ÑANDU");
+
+    juego.adivinar("Ñ");
+
+    expect(juego.palabraEnmascarada()).toBe("Ñ _ _ _ _");
+  });
