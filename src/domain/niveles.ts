@@ -3,3 +3,7 @@ const VIDAS_POR_NIVEL: Readonly<Record<string, number>> = { facil: 8, normal: 6,
 export function vidasDelNivel(nivel: string): number | undefined {
   return VIDAS_POR_NIVEL[nivel];
 }
+
+export function vidasIniciales(_vidas: number | undefined, _nivel: string | null): number | undefined {
+  return undefined;
+}
