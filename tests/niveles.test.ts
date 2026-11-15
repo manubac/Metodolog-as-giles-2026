@@ -19,4 +19,8 @@ describe("vidasIniciales", () => {
   it("si se indican vidas, ganan sobre el nivel", () => {
     expect(vidasIniciales(3, "facil")).toBe(3);
   });
+
+  it("sin vidas, usa las del nivel", () => {
+    expect(vidasIniciales(undefined, "facil")).toBe(8);
+  });
 });
