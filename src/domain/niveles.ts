@@ -4,6 +4,6 @@ export function vidasDelNivel(nivel: string): number | undefined {
   return VIDAS_POR_NIVEL[nivel];
 }
 
-export function vidasIniciales(_vidas: number | undefined, _nivel: string | null): number | undefined {
-  return undefined;
+export function vidasIniciales(vidas: number | undefined, _nivel: string | null): number | undefined {
+  return vidas;
 }
