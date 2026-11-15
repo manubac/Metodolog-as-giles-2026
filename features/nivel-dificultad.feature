@@ -16,3 +16,14 @@ Característica: Nivel de dificultad
       | facil   | 8     |
       | normal  | 6     |
       | dificil | 4     |
+
+  @CA-14
+  Esquema del escenario: Si se indican vidas y nivel, ganan las vidas
+    Dado una partida con la palabra "GATO", <vidas> vidas y nivel "<nivel>"
+    Entonces se ven <vidas> vidas
+    Y se ve la palabra "_ _ _ _"
+
+    Ejemplos:
+      | vidas | nivel   |
+      | 3     | facil   |
+      | 8     | dificil |
