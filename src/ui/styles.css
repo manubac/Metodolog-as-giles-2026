@@ -1,0 +1,351 @@
+:root {
+  --bg-gradient: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+  --card-bg: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --success-bg: #dcfce7;
+  --success-text: #15803d;
+  --error-bg: #fee2e2;
+  --error-text: #b91c1c;
+  --warning-bg: #fef3c7;
+  --warning-text: #b45309;
+  --border-color: #e2e8f0;
+  --shadow-card: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+#app {
+  width: 100%;
+  max-width: 650px;
+}
+
+.game-card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  box-shadow: var(--shadow-card);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  border: 1px solid var(--border-color);
+}
+
+/* Header: Categoría, Vidas y Puntaje */
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.badge-categoria {
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  border: 1px solid #bfdbfe;
+}
+
+.stats-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-main);
+  background: #f8fafc;
+  padding: 0.35rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.stat-icon {
+  font-size: 1.1rem;
+}
+
+.lives-count {
+  font-weight: 700;
+  color: #e11d48;
+}
+
+.score-count {
+  font-weight: 700;
+  color: #0d9488;
+}
+
+/* Ilustración del Ahorcado */
+.hangman-visual-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: 1rem;
+  border: 1px dashed var(--border-color);
+  min-height: 220px;
+}
+
+.hangman-svg {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.05));
+}
+
+.hangman-beam {
+  stroke: #18181b;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.hangman-part {
+  stroke: #18181b;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.hangman-head {
+  fill: #ffffff;
+}
+
+/* Palabra Enmascarada */
+.word-container {
+  text-align: center;
+  padding: 0.75rem 0;
+}
+
+.word-display {
+  font-family: "Courier New", Courier, monospace, sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.45em;
+  color: #0f172a;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+/* Mensajes / Avisos */
+.mensaje-box {
+  min-height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.mensaje-box:empty {
+  display: none;
+}
+
+.mensaje-ganaste {
+  background: var(--success-bg);
+  color: var(--success-text);
+  border: 1px solid #bbf7d0;
+  animation: popIn 0.3s ease;
+}
+
+.mensaje-perdiste {
+  background: var(--error-bg);
+  color: var(--error-text);
+  border: 1px solid #fecaca;
+  animation: popIn 0.3s ease;
+}
+
+.mensaje-aviso {
+  background: var(--warning-bg);
+  color: var(--warning-text);
+  border: 1px solid #fde68a;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.95); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Área de Input */
+.input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.letter-input {
+  flex: 1;
+  padding: 0.85rem 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  text-align: center;
+  letter-spacing: 0.1em;
+}
+
+.letter-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.btn-adivinar {
+  background: var(--primary);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 0 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.btn-adivinar:hover {
+  background: var(--primary-hover);
+}
+
+.btn-adivinar:active {
+  transform: scale(0.98);
+}
+
+.btn-pista {
+  background: #fef08a;
+  color: #854d0e;
+  border: 1px solid #fde047;
+  border-radius: 12px;
+  padding: 0 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-pista:hover {
+  background: #fde047;
+  color: #713f12;
+}
+
+.btn-pista:active {
+  transform: scale(0.98);
+}
+
+/* Teclado Virtual */
+.keyboard-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem;
+  padding-top: 0.5rem;
+}
+
+.key-button {
+  width: 2.2rem;
+  height: 2.5rem;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #334155;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.key-button:hover:not(:disabled) {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  transform: translateY(-1px);
+}
+
+.key-button:disabled {
+  opacity: 0.35;
+  background: #e2e8f0;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.key-button.key-acierto {
+  background: #dcfce7;
+  color: #166534;
+  border-color: #86efac;
+}
+
+.key-button.key-fallo {
+  background: #fee2e2;
+  color: #991b1b;
+  border-color: #fca5a5;
+}
+
+/* Botón Reiniciar / Otra Partida */
+.restart-container {
+  text-align: center;
+  padding-top: 0.25rem;
+}
+
+.btn-restart {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-restart:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+}

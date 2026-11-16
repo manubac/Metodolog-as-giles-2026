@@ -13,4 +13,4 @@ const vidas = vidasIniciales(lives === null ? undefined : Number(lives), level);
 const root = document.getElementById("app");
 if (root) {
   mountApp(root, new Ahorcado(elegida.palabra, vidas), elegida.categoria);
-};
+}
