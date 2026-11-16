@@ -18,7 +18,7 @@ export class Ahorcado {
     if (this.palabra.includes(letra)) {
       this.letrasAdivinadas.add(letra);
     } else {
-      this.vidas -= 1;
+      this.vidas -= 2;
     }
   }
 
@@ -37,7 +37,9 @@ export class Ahorcado {
   palabraEnmascarada(): string {
     return this.palabra
       .split("")
-      .map((letra) => (this.perdio() || this.letrasAdivinadas.has(letra) ? letra : "_"))
+      .map((letra) =>
+        this.perdio() || this.letrasAdivinadas.has(letra) ? letra : "_",
+      )
       .join(" ");
   }
 
@@ -47,9 +49,11 @@ export class Ahorcado {
 
   pedirPista(): void {
     if (this.perdio() || this.gano()) return;
-    if (this.vidas === 1) throw new Error("No te quedan vidas para pedir una pista");
+    if (this.vidas === 1)
+      throw new Error("No te quedan vidas para pedir una pista");
     const ocultas = this.letrasOcultas();
-    if (ocultas.length === 1) throw new Error("La última letra la tenés que adivinar vos");
+    if (ocultas.length === 1)
+      throw new Error("La última letra la tenés que adivinar vos");
     this.letrasAdivinadas.add(ocultas[0]);
     this.vidas -= 1;
   }
@@ -59,6 +63,12 @@ export class Ahorcado {
   }
 
   private letrasOcultas(): string[] {
-    return [...new Set(this.palabra.split("").filter((letra) => !this.letrasAdivinadas.has(letra)))];
+    return [
+      ...new Set(
+        this.palabra
+          .split("")
+          .filter((letra) => !this.letrasAdivinadas.has(letra)),
+      ),
+    ];
   }
 }
