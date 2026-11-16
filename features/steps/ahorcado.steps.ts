@@ -43,6 +43,10 @@ When("el jugador pide una pista", async ({ page }) => {
   await page.getByRole("button", { name: "Pista" }).click();
 });
 
+When("el jugador elige el nivel {string}", async ({ page }, nivel: string) => {
+  await page.getByRole("button", { name: nivel, exact: true }).click();
+});
+
 Then("se ve la palabra {string}", async ({ page }, esperada: string) => {
   await expect(page.getByTestId("word")).toHaveText(esperada);
 });

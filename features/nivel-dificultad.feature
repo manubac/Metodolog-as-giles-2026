@@ -27,3 +27,15 @@ Característica: Nivel de dificultad
       | vidas | nivel   |
       | 3     | facil   |
       | 8     | dificil |
+
+  @CA-24
+  Esquema del escenario: Elegir el nivel desde la pantalla reinicia la partida con sus vidas
+    Dado una partida con la palabra "GATO"
+    Cuando el jugador elige el nivel "<nivel>"
+    Entonces se ven <vidas> vidas
+    Y se ve la palabra "_ _ _ _"
+
+    Ejemplos:
+      | nivel   | vidas |
+      | Fácil   | 8     |
+      | Difícil | 4     |
