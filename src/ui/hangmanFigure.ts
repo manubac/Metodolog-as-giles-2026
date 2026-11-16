@@ -44,7 +44,7 @@ export function createHangmanFigure(): {
     container.querySelector("#part-leg-right") as SVGElement,
   ];
 
-  function update(errores: number): void {
+  function update(errores: string): void {
     const etapasVisibles = Math.max(0, Math.min(6, errores));
     parts.forEach((part, index) => {
       if (part) {
