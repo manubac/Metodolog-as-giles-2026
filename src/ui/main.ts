@@ -25,7 +25,7 @@ export function mountApp(root: HTMLElement, juego: Ahorcado, categoria?: string)
   livesItem.className = "stat-item";
   const heartsSpan = document.createElement("span");
   heartsSpan.className = "stat-icon";
-  heartsSpan.textContent = "❤️";
+  heartsSpan.textContent = "corazon";
   const livesLabel = document.createElement("span");
   livesLabel.textContent = "Vidas: ";
   const lives = document.createElement("span");
