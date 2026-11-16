@@ -18,7 +18,7 @@ export class Ahorcado {
     if (this.palabra.includes(letra)) {
       this.letrasAdivinadas.add(letra);
     } else {
-      this.vidas -= 2;
+      this.vidas -= 1;
     }
   }
 
