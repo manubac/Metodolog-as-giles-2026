@@ -38,6 +38,7 @@ heredan todos sus escenarios) y un tag `@CA-n` por escenario, más esta matriz.
 | HU-09    | CA-21 Iniciar con `?category=X` → se ve la categoría y la palabra sale de esa categoría (ejemplos: animales, frutas) | ✅ Done | `@CA-21`                | "elige la primera palabra de la categoría cuando el azar da 0", "elige la última palabra de la categoría cuando el azar se acerca a 1"                                                                                                    |
 | HU-09    | CA-22 Categoría inexistente (o sin categoría ni `word`) → se elige al azar entre todas las categorías                | ✅ Done | `@CA-22`                | "con una categoría inexistente elige al azar entre todas las categorías", "sin categoría elige al azar entre todas las categorías"                                                                                                        |
 | HU-08    | CA-23 Pedir pista con una sola letra oculta → no se da e informa `"La última letra la tenés que adivinar vos"`       | ✅ Done | `@CA-23`                | "no da pista si queda una sola letra oculta"                                                                                                                                                                                              |
+| HU-06    | CA-24 Elegir el nivel desde la pantalla (botones Fácil / Normal / Difícil) → arranca una partida nueva con las vidas del nivel | ✅ Done | `@CA-24` | — (solo UI: la regla nivel → vidas ya la cubren los UT de CA-13 y CA-14) |
 
 ### HU-01 — Inicio de partida · ✅ Done
 
@@ -76,10 +77,13 @@ defecto (6) vive en `Ahorcado`, igual que la validación de valores inválidos (
 
 **Como** jugador **quiero** elegir la dificultad por nombre (fácil, normal o difícil) **para** jugar a mi medida
 sin tener que saber cuántas vidas corresponden a cada una.
-AT: [`features/nivel-dificultad.feature`](features/nivel-dificultad.feature) — CA-13, CA-14.
+AT: [`features/nivel-dificultad.feature`](features/nivel-dificultad.feature) — CA-13, CA-14, CA-24.
 Seam: `?level=facil|normal|dificil` en la URL. La regla nivel → vidas (`vidasDelNivel`) y la prioridad de
 `lives` sobre `level` (`vidasIniciales`) viven en el dominio, en `src/domain/niveles.ts`; `index.ts` solo lee
 los parámetros y convierte `lives` a número. El nivel elegido no se muestra en pantalla: lo muestran las vidas.
+CA-24 agrega los botones Fácil / Normal / Difícil: recargan la página con `?level=` (conservan `word` y
+`category`), así que el jugador no necesita editar la URL. El click descarta `?lives=`; si no, por CA-14 las
+vidas ganarían y elegir nivel no haría nada. No lleva UT: es solo UI y la regla ya está cubierta.
 Consecuencias del diseño, sin criterio propio:
 - Un nivel inexistente devuelve `undefined` y `Ahorcado` usa sus 6 vidas por defecto (HU-05).
 - `?lives=abc&level=facil` da 6 vidas, no 8: `lives` gana aunque sea inválido, y `Ahorcado` lo reemplaza por

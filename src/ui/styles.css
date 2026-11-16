@@ -349,3 +349,35 @@ body {
   background: #e2e8f0;
   color: #1e293b;
 }
+
+/* Selectores de nivel y categoría */
+.selector-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.selector-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.btn-selector {
+  background: #ffffff;
+  color: var(--text-main);
+  border: 1px solid #cbd5e1;
+  border-radius: 9999px;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-selector:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}

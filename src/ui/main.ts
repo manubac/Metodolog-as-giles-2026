@@ -113,12 +113,22 @@ export function mountApp(root: HTMLElement, juego: Ahorcado, categoria?: string)
   });
   restartContainer.appendChild(btnRestart);
 
+  const selectorNivel = crearSelector("Nivel:", [
+    ["Fácil", "facil"],
+    ["Normal", "normal"],
+    ["Difícil", "dificil"],
+  ], (nivel) => {
+    // Elegir nivel en pantalla descarta ?lives=: si no, por CA-14 las vidas ganarían y el click no haría nada.
+    reiniciarCon({ level: nivel, lives: null });
+  });
+
   card.append(
     header,
     hangman.element,
     wordContainer,
     mensaje,
     inputSection,
+    selectorNivel,
     restartContainer
   );
 
@@ -197,4 +207,35 @@ export function mountApp(root: HTMLElement, juego: Ahorcado, categoria?: string)
   });
 
   render();
+}
+
+function crearSelector(
+  titulo: string,
+  opciones: ReadonlyArray<readonly [string, string]>,
+  alElegir: (valor: string) => void,
+): HTMLElement {
+  const contenedor = document.createElement("div");
+  contenedor.className = "selector-row";
+  const etiqueta = document.createElement("span");
+  etiqueta.className = "selector-label";
+  etiqueta.textContent = titulo;
+  contenedor.appendChild(etiqueta);
+  for (const [texto, valor] of opciones) {
+    const boton = document.createElement("button");
+    boton.type = "button";
+    boton.className = "btn-selector";
+    boton.textContent = texto;
+    boton.addEventListener("click", () => alElegir(valor));
+    contenedor.appendChild(boton);
+  }
+  return contenedor;
+}
+
+function reiniciarCon(cambios: Record<string, string | null>): void {
+  const params = new URLSearchParams(window.location.search);
+  for (const [clave, valor] of Object.entries(cambios)) {
+    if (valor === null) params.delete(clave);
+    else params.set(clave, valor);
+  }
+  window.location.search = params.toString();
 }
